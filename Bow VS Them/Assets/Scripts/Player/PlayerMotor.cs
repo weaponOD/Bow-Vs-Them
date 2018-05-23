@@ -6,21 +6,37 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMotor : MonoBehaviour
 {
-
+    [Header("Camera Options")]
     [SerializeField]
     bool allowXRotation = true;
     [SerializeField]
-    bool invertXRotation = false;
+    bool invertY = false;
     [SerializeField]
-    bool invertYRotation = false;
+    bool invertX = false;
+
+
+    [Header("Player Options")]
+    [SerializeField]
+    bool isGrounded = true;
 
 
     //Player velocity
-    Vector3 p_Velocity = Vector3.zero;
+    Vector3 playerVelocity = Vector3.zero;
     //Player rotation
-    Vector3 p_Rotation = Vector3.zero;
+    Vector3 playerRotation = Vector3.zero;
+    //Jump Force
+    Vector3 jumpForce = Vector3.zero;
+
     //Camera rotation
-    Vector3 c_Rotation = Vector3.zero;
+    float cameraRotationX = 0;
+    //Current Cam
+    float current_cameraRotationX = 0;
+
+
+    [SerializeField]
+    float camRotY_Max;
+    [SerializeField]
+    float camRotY_Min;
 
     //Cache
     Rigidbody rb;
@@ -33,21 +49,27 @@ public class PlayerMotor : MonoBehaviour
     }
 
     //gets a movement vector
-    public void Move(Vector3 _velocity)
+    public void GetMovementVector(Vector3 _velocity)
     {
-        p_Velocity = _velocity;
+        playerVelocity = _velocity;
     }
 
     //gets movement rotation vector
-    public void Rotate(Vector3 _rotation)
+    public void GetRotationVector(Vector3 _rotation)
     {
-        p_Rotation = _rotation;
+        playerRotation = _rotation;
     }
 
     //gets a rotation vector
-    public void RotateCamera(Vector3 _camRotation)
+    public void GetCameraRotation(float _camRotation)
     {
-        c_Rotation = _camRotation;
+        cameraRotationX = _camRotation;
+    }
+
+    //gets jump amount
+    public void GetJumpVector(Vector3 _jumpForce)
+    {
+        jumpForce = _jumpForce;
     }
 
     void FixedUpdate()
@@ -59,24 +81,41 @@ public class PlayerMotor : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (p_Velocity != Vector3.zero)
+        //Walking
+        if (playerVelocity != Vector3.zero)
         {
-            rb.MovePosition(rb.position + p_Velocity * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + playerVelocity * Time.fixedDeltaTime);
+        }
+
+        PlayerJump();
+    }
+
+    private void PlayerJump()
+    {
+        //if in the air, cannot jump
+        if (!isGrounded) return;
+        
+        if (jumpForce != Vector3.zero)
+        {
+            rb.AddForce(jumpForce * Time.fixedDeltaTime, ForceMode.Acceleration);
         }
     }
+
+
+
+
 
     private void RotatePlayer()
     {
         //Rotate Player in Y
-        if (invertYRotation)
+        if (invertX)
         {
-            rb.MoveRotation(transform.rotation * Quaternion.Euler(-p_Rotation));
+            rb.MoveRotation(transform.rotation * Quaternion.Euler(-playerRotation));
         }
         else
         {
-            rb.MoveRotation(transform.rotation * Quaternion.Euler(p_Rotation));
+            rb.MoveRotation(transform.rotation * Quaternion.Euler(playerRotation));
         }
-
     }
 
     private void RotateCamera()
@@ -85,15 +124,18 @@ public class PlayerMotor : MonoBehaviour
         if (!allowXRotation) return;
 
         //Rotate Camera in X, check for invert
-        if (invertXRotation)
+        if (invertY)
         {
-            cam.transform.Rotate(c_Rotation);
+            current_cameraRotationX += cameraRotationX;
         }
         else
         {
-            cam.transform.Rotate(-c_Rotation);
+            current_cameraRotationX -= cameraRotationX;
         }
+        //Clamp and rotate
+        current_cameraRotationX = Mathf.Clamp(current_cameraRotationX, camRotY_Min, camRotY_Max);
+        cam.transform.localEulerAngles = new Vector3(current_cameraRotationX, 0, 0);
 
-        
+
     }
 }
