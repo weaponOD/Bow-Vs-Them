@@ -28,9 +28,8 @@ MonoBehaviour:
   m_Int_values: 01000000020000000000000000000000
   m_Float_values:
   - 0
-  - 591
+  - 0
   m_String_values:
-  - "Assets/\uE83A\uE83AThirdPartyAssets/ProCore/ProBuilder/Data/Default Material
-    Palette.asset"
+  - "Assets/\uE83AThirdPartyAssets/ProCore/ProBuilder/Data/Default Material Palette.asset"
   m_Color_values: []
   m_Material_values: []
