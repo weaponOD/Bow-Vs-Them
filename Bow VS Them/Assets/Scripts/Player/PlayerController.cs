@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     float jump_Force = 1000f;
 
-    [Header("Spring Settings")]
-    [SerializeField]
-    private float jointSpring = 20;
-    [SerializeField]
-    private float jointMaxForce = 40;
+    //[Header("Spring Settings")]
+    //[SerializeField]
+    //private float jointSpring = 20;
+    //[SerializeField]
+    //private float jointMaxForce = 40;
 
     [Header("Camera Settings")]
     [SerializeField]
@@ -32,14 +32,14 @@ public class PlayerController : MonoBehaviour {
         joint = GetComponent<ConfigurableJoint>();
 
         //Set default spring position (ground)
-        SetJointSettings(jointSpring);
+        //SetJointSettings(jointSpring);
 	}
 	
 	void Update () {
         GetMovementInput();
         GetPlayerRotationInput();
         GetCameraRotationInput();
-        GetJumpInput();
+       // GetJumpInput();
     }
 
     void GetMovementInput()
@@ -79,26 +79,26 @@ public class PlayerController : MonoBehaviour {
         playerMotor.GetCameraRotation(_camRotation);
     }
 
-    void GetJumpInput()
-    {
-        //if we haven't jumped, set to nil
-        Vector3 _jumpForce = Vector3.zero;
+    //void GetJumpInput()
+    //{
+    //    //if we haven't jumped, set to nil
+    //    Vector3 _jumpForce = Vector3.zero;
 
-        if (Input.GetButton("Jump"))
-        {
-            _jumpForce = Vector3.up * jump_Force;
-            SetJointSettings(0);
-        }
-        else
-        {
-            SetJointSettings(jointSpring);
-        }
+    //    if (Input.GetButton("Jump"))
+    //    {
+    //        _jumpForce = Vector3.up * jump_Force;
+    //        SetJointSettings(0);
+    //    }
+    //    else
+    //    {
+    //        SetJointSettings(jointSpring);
+    //    }
 
-        playerMotor.GetJumpVector(_jumpForce);
-    }
+    //    playerMotor.GetJumpVector(_jumpForce);
+    //}
 
-    void SetJointSettings(float _jointSpring)
-    {
-        joint.yDrive = new JointDrive { positionSpring = _jointSpring, maximumForce = jointMaxForce };
-    }
+    //void SetJointSettings(float _jointSpring)
+    //{
+    //    joint.yDrive = new JointDrive { positionSpring = _jointSpring, maximumForce = jointMaxForce };
+    //}
 }

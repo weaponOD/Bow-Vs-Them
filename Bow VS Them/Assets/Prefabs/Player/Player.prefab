@@ -209,7 +209,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.16025086, g: 0.83823526, b: 0.69796294, a: 0}
+  m_BackGroundColor: {r: 0.9558824, g: 0.8619422, b: 0.5552552, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -419,9 +419,13 @@ MonoBehaviour:
   allowXRotation: 1
   invertY: 0
   invertX: 0
-  isGrounded: 1
   camRotY_Max: 70
   camRotY_Min: -65
+  checkRadius: 0.2
+  checkDistance: 0.1
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &114890744658125596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -435,8 +439,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Speed: 5
   jump_Force: 3000
-  jointSpring: 15
-  jointMaxForce: 40
   x_LookSensitivity: 18
   y_LookSensitivity: 10
 --- !u!124 &124081283395829080

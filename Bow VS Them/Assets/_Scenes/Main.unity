@@ -457,6 +457,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114190844600272436, guid: 3a037f92733ceb549bf6669d46cac52d,
+        type: 2}
+      propertyPath: floorMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 114190844600272436, guid: 3a037f92733ceb549bf6669d46cac52d,
+        type: 2}
+      propertyPath: checkDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114190844600272436, guid: 3a037f92733ceb549bf6669d46cac52d,
+        type: 2}
+      propertyPath: checkRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 20928976322602252, guid: 3a037f92733ceb549bf6669d46cac52d,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0.9558824
+      objectReference: {fileID: 0}
+    - target: {fileID: 20928976322602252, guid: 3a037f92733ceb549bf6669d46cac52d,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0.8619422
+      objectReference: {fileID: 0}
+    - target: {fileID: 20928976322602252, guid: 3a037f92733ceb549bf6669d46cac52d,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0.5552552
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a037f92733ceb549bf6669d46cac52d, type: 2}
   m_IsPrefabParent: 0
@@ -473,7 +503,7 @@ GameObject:
   - component: {fileID: 1747044516}
   - component: {fileID: 1747044515}
   - component: {fileID: 1747044514}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1425,17 +1455,9 @@ MonoBehaviour:
     areaError: 15
   asset_guid: 
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 11000000
-  m_SelectedEdges:
-  - x: 68
-    y: 69
-  - x: 70
-    y: 68
-  - x: 69
-    y: 71
-  - x: 71
-    y: 70
-  m_selectedTriangles: 440000004500000046000000450000004700000046000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!33 &1747044516
 MeshFilter:
   m_ObjectHideFlags: 0
